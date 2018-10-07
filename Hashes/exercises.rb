@@ -84,14 +84,18 @@ end
 # if key exists, append current word into value (array)
 # otherweise, create a new key with this sorted word
 
+words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+  'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+  'flow', 'neon']
+
 result = {} # initialize a result hash which will be populated with key-value pairs as we iterate through the words array
 
 words.each do |word|
   key = word.split('').sort.join # as we iterate, strings will be split by characters - split(''), alphabetized - sort, and then rejoined as a string - join
   if result.has_key?(key)
-    result[key].push(word) # is push an array only method?
+    result[key].push(word) # this will push the word into the arrays as a value. You call the aray with result[key] since that is calling the value part of the key-value pair of the hash.
   else
-    result[key] = [word] # double check what it takes to create an array 
+    result[key] = [word] # you are setting the value of the key here and also ensuring that the values are the array type. To set a value in a hash, you would hash[key] = value
   end    
 end  
 
@@ -99,4 +103,55 @@ result.each_value do |v|
   puts "-"
   p v
 end
-  
+
+# Retrying Exercise 6
+
+words = ["dog","god", "fog"]
+
+anagrams = {}
+
+words.each do |word|
+  key = word.split('').sort.join
+  if anagrams.has_key?(key)
+    anagrams[key].push(word)
+  else
+    anagrams[key] = [word]
+  end
+end
+
+anagrams.each_value do |v|
+  p v
+end
+
+
+# iterate over the array
+# alphabetize the key
+# if key exists add current word to key
+# otherwise create a new key
+
+# Exercise 7 - What's the difference between the two hashes that were created?
+
+x = "hi there"
+my_hash = {x: "some value"}
+my_hash2 = {x => "some value"}
+
+=begin
+
+my_hash's key is a symbol x
+my_hash2's key is a string - string value of the x variable
+
+=end
+
+# Exercise 8 - If you see this error, what do you suspect is the most likely problem?
+
+NoMethodError: undefined method `keys' for Array
+
+=begin
+A. We're missing keys in an array variable.
+
+B. There is no method called keys for Array objects. - I think this is the answer since it is saying that there is no defined method
+
+C. keys is an Array object, but it hasn't been defined yet.
+
+D. There's an array of strings, and we're trying to get the string keys out of the array, but it doesn't exist.
+=end
