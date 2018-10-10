@@ -41,4 +41,39 @@ new_lab("Pans Labyrinth")
 new_lab("elaborate")
 new_lab("polar bear")
 
-# Exercise 2
+# Exercise 2 - What will the following program print to the screen? What will it return?
+
+def execute(&block)
+  block
+end
+
+p execute { puts "Hello from inside the execute method!" } # Will print "Hello from inside the execute method!"
+# This answer is incorrect because the block is never called. It is missing the .call method
+# After adding the p, a Proc object ID is returned
+
+# Exercise 3 - What is exception handling and what problem does it solve?
+# Exception handling is to help the program continue to run if there is an unexpected error
+# Normally with an error, the program will exit and the error will be displayed
+# However, with exception handling, if an exception is raised, the rescue block will execute and then the program will continue to run
+
+# Exercise 4 - Modify the code in exercise 2 to make the block execute properly.
+
+def execute(&block)
+  block.call
+end
+
+execute { puts "Hello from inside the execute method!" }
+
+# Exercise 5
+
+# def execute(block)
+#   block.call
+# end
+
+# execute { puts "Hello from inside the execute method!" }
+
+# Why does the code give an error?
+# Instead of calling the block, it is asking for an argument. We need to add an ampersand to parameter to be able to accept a block.
+
+
+
