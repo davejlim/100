@@ -108,7 +108,33 @@ p contacts["Sally Johnson"][:phone]
 # contact_data = ["joe@email.com", "123 Main st.", "555-123-4567"]
 # contacts = {"Joe Smith" => {}}
 
+contact_data = ["joe@email.com", "123 Main st.", "555-123-4567"]
+contacts = {"Joe Smith" => {} }
+fields = [:email, :address, :phone]
+
+contacts.each do |name, hash|
+  fields.each do |field|
+    hash[field] = contact_data.shift
+  end
+end
+
+p contacts
+
 # As a bonus, see if you can figure out how to make it work with multiple entries in the contacts hash.
+puts "Exercise 15b"
+contact_data = [["joe@email.com", "123 Main st.", "555-123-4567"],
+            ["sally@email.com", "404 Not Found Dr.", "123-234-3454"]]
+
+contacts = {"Joe Smith" => {}, "Sally Johnson" => {}}
+fields = [:email, :address, :phone]
+
+contacts.each_with_index do | (name, hash), idx |
+  fields.each do  |field|
+    hash[field] = contact_data[idx].shift
+  end
+end    
+
+p contacts
 
 # Exercise 15 - Use Ruby's Array method delete_if and String method start_with? to delete all of the words that begin with an "s" in the following array.
 
