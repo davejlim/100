@@ -110,3 +110,34 @@ p contacts["Sally Johnson"][:phone]
 
 # As a bonus, see if you can figure out how to make it work with multiple entries in the contacts hash.
 
+# Exercise 15 - Use Ruby's Array method delete_if and String method start_with? to delete all of the words that begin with an "s" in the following array.
+
+arr = ['snow', 'winter', 'ice', 'slippery', 'salted roads', 'white trees']
+
+# Then recreate the arr and get rid of all of the words that start with "s" or starts with "w".
+
+arr.delete_if { |string| string.start_with?("s", "w") }
+p arr
+
+# Exercise 16 - Take the array below turn it into a new array that consists of strings containing one word. 
+# (ex. ["white snow", etc...] → ["white", "snow", etc...]. Look into using Array's map and flatten methods, as well as String's split method.
+
+a = ['white snow', 'winter wonderland', 'melting ice', 'slippery sidewalk', 'salted roads', 'white trees']
+
+p a_new = a.map{ |words| words.split(" ") }.flatten
+
+# Exercise 17 - What will the following program output?
+
+hash1 = {shoes: "nike", "hat" => "adidas", :hoodie => true}
+hash2 = {"hat" => "adidas", :shoes => "nike", hoodie: true}
+
+if hash1 == hash2
+  puts "These hashes are the same!"
+else
+  puts "These hashes are not the same!"
+end
+
+
+
+
+
