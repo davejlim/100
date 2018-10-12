@@ -137,7 +137,7 @@ else
   puts "These hashes are not the same!"
 end
 
-
+# This should output "These hashes are the same!" since both hashes are equal to each other.
 
 
 
