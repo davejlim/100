@@ -161,32 +161,59 @@
 # Exercise 10 - Write a program that requests two integers from the user, adds them together, and then displays the result. Furthermore, insist that one of the integers be positive, and one negative; 
 # however, the order in which the two integers are entered does not matter.
 
+# def valid_number?(number_string)
+#   number_string.to_i.to_s == number_string && number_string.to_i != 0
+# end
+
+# first_int = nil
+# second_int = nil
+
+# loop do
+#   puts ">> Please enter a positive or negative integer:"
+#   first_int = gets.chomp.to_i.to_s
+
+#   puts ">> Please enter a positive or negative integer:"
+#   second_int = gets.chomp.to_i.to_s
+
+#   if first_int.to_i > 0 && second_int.to_i < 0
+#     break
+#   elsif first_int.to_i < 0 && second_int.to_i > 0
+#     break
+#   elsif !valid_number?(first_int) || !valid_number?(second_int)
+#     puts ">> Invalid input. Only non-zero integers are allowed."
+#   else
+#     puts ">> Sorry. One integer must be positive, one must be negative."
+#     puts ">> Please start over."
+#   end
+# end
+
+# answer = first_int.to_i + second_int.to_i
+
+# puts "#{first_int} + #{second_int} = #{answer}"
+  
 def valid_number?(number_string)
   number_string.to_i.to_s == number_string && number_string.to_i != 0
 end
 
-first_int = nil
-second_int = nil
-
-loop do
-  puts ">> Please enter a positive or negative integer:"
-  first_int = gets.chomp.to_i
-
-  puts ">> Please enter a positive or negative integer:"
-  second_int = gets.chomp.to_i
-
-  if first_int > 0 && second_int < 0
-    break
-  elsif first_int < 0 && second_int > 0
-    break
-  elsif valid_number?(first_int) || valid_number?(second_int)
+def read_number
+  loop do
+    puts ">> Please enter a positive or negative integer:"
+    number = gets.chomp
+    return number.to_i if valid_number?(number)
     puts ">> Invalid input. Only non-zero integers are allowed."
   end
 end
 
-answer = first_int + second_int
+first_number = nil
+second_number = nil
 
-puts "#{first_int} + #{second_int} = #{answer}"
-  
+loop do
+  first_number = read_number
+  second_number = read_number
+  break if first_number * second_number < 0
+  puts ">> Sorry. One integer must be positive, one must be negative."
+  puts ">> Please start over."
+end
 
-
+sum = first_number + second_number
+puts "#{first_number} + #{second_number} = #{sum}"
