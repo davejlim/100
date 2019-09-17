@@ -64,10 +64,68 @@
 
 # Exercise 6 - In the code below, an array containing the numbers 1 through 5 is assigned to numbers.
 
-numbers = [1, 2, 3, 4, 5]
+# numbers = [1, 2, 3, 4, 5]
 
 # Use Array#map to iterate over numbers and return a new array with each number doubled. Assign the returned array to a variable named doubled_numbers and print its value using #p.
 
-doubled_numbers = numbers.map {|num| 2*num}
+# doubled_numbers = numbers.map {|num| 2*num}
 
-p doubled_numbers
+# p doubled_numbers
+
+# Array#map is an iterator like each in the previous example. In this example, it iterates voer an array and returns a new array with eahc element transformed based on the block's return value.
+# Because of this, we can assign the return value of #map to a variable to use at a later time. Because there is only one statement within the block, we know that this will be the return value.
+
+# Exercise 7 - In the code below, an array containing five numbers is assigned to numbers.
+
+# numbers = [5, 9, 21, 26, 39]
+
+# Use Array#select to iterate over numbers and return a new array that contains only numbers divisible by three. Assign the returned array to a variable named divisible_by_three and print its value using #p.
+
+# numbers.keep_if {|num| num % 3 == 0}
+
+# p numbers
+
+# I did not follow the prompt as I used the #keep_if instead of the #select method. 
+
+# divisible_by_three = numbers.select do |num|
+#                       num % 3 == 0
+#                     end
+
+# p divisible_by_three
+
+# The key to this is that the select method needs to be assigned to a variable. #map returns a new array with each element trnasformed based on the block's return value.
+# #select returns a new aaarray containing elemetns selected only if the blcok's return value evaluates to true. My problem is that when I used select for my area without assigning it
+# to a new variable, I still printed the old array instead of selecting the values who met the condition.
+
+# Exercise 8 - The following array contains three names and numbers. Group each name with the number following it by placing the pair in their own array. 
+# Then create a nested array containing all three groups. What does this look like? (You don't need to write any code here. Just alter the value shown so it meets the exercise requirements.)
+
+# ['Dave', 7, 'Miranda', 3, 'Jason', 11]
+
+# [['Dave', 7], ['Miranda',3], ['Jason', 11]]
+
+# Exercise 9 - In the code below, a nested array containing three groups of names and numbers is assigned to favorites.
+
+# favorites = [['Dave', 7], ['Miranda', 3], ['Jason', 11]]
+
+# Use Array#flatten to flatten favorites so that it's no longer a nested array. Then assign the flattened array to a variable named flat_favorites and print its value using #p.
+
+# p flat_favorites = favorites.flatten
+
+# Exercise 10 - In the code below, two arrays containing several numbers are assigned to two variables, array1 and array2.
+
+array1 = [1, 5, 9]
+array2 = [1, 5, 9]
+
+# Compare array1 and array2 and print true or false based on whether they match.
+
+comparison = array1 <=> array2
+if comparison == 0
+  puts "true"
+else
+  puts "false"
+end    
+
+# This worked, but the simplest way to compare arrays is simply to use ==. 
+
+puts array1 == array2
