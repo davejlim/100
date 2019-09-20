@@ -109,53 +109,157 @@
 
 # Financially, you started the year with a clean slate.
 
-balance = 0
+# balance = 0
 
 # Here's what you earned and spent during the first three months.
 
-january = {
-  income: [ 1200, 75 ],
-  expenses: [ 650, 140, 33.2, 100, 26.9, 78 ]
-}
+# january = {
+#   income: [ 1200, 75 ],
+#   expenses: [ 650, 140, 33.2, 100, 26.9, 78 ]
+# }
 
-february = {
-  income: [ 1200 ],
-  expenses: [ 650, 140, 320, 46.7, 122.5 ]
-}
+# february = {
+#   income: [ 1200 ],
+#   expenses: [ 650, 140, 320, 46.7, 122.5 ]
+# }
 
-march = {
-  income: [ 1200, 10, 75 ],
-  expenses: [ 650, 140, 350, 12, 59.9, 2.5 ]
-}
+# march = {
+#   income: [ 1200, 10, 75 ],
+#   expenses: [ 650, 140, 350, 12, 59.9, 2.5 ]
+# }
 
 # Let's see how much you've got now...
 
-def calculate_balance(month)
-  plus  = month[:income].sum
-  minus = month[:expenses].sum
+# def calculate_balance(month)
+#   plus  = month[:income].sum
+#   minus = month[:expenses].sum
 
-  plus - minus
-end
+#   plus - minus
+# end
 
-[january, february, march].each do |month|
-  balance = calculate_balance(month)
-end
+# [january, february, march].each do |month|
+#   balance = calculate_balance(month)
+# end
 
-puts balance
+# puts balance
 
 # We can test the calculate_balance method by adding a few test cases:
-puts calculate_balance({ income: [], expenses: [] }) == 0         #=> true
-puts calculate_balance({ income: [100], expenses: [] }) == 100    #=> true
-puts calculate_balance({ income: [], expenses: [100] }) == -100   #=> true
-puts calculate_balance({ income: [100], expenses: [50] }) == 50   #=> true
-puts calculate_balance({ income: [4, 3], expenses: [2, 1] }) == 4 #=> true
+# puts calculate_balance({ income: [], expenses: [] }) == 0         #=> true
+# puts calculate_balance({ income: [100], expenses: [] }) == 100    #=> true
+# puts calculate_balance({ income: [], expenses: [100] }) == -100   #=> true
+# puts calculate_balance({ income: [100], expenses: [50] }) == 50   #=> true
+# puts calculate_balance({ income: [4, 3], expenses: [2, 1] }) == 4 #=> true
 # We can see that this method works as expected.
 
 # According to the solution, we are simply re-assigning balance to the return value of invoking calcualte_balance with the current months' data.
 # We want to increment balance by re-assigning it ot the current vlaue of balacne plus the return value of calculate_balance.
 
-[january, february, march].each do |month|
-  balance += calculate_balance(month)
-end
+# [january, february, march].each do |month|
+#   balance += calculate_balance(month)
+# end
 
-# Exercise 8 - 
+# Exercise 8 - The following code throws an error. Find out what is wrong and think about how you would fix it.
+
+# colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 'turquoise', 'silver', 'black']
+# things = ['pen', 'mouse pad', 'coffee mug', 'sofa', 'surf board', 'training mat', 'notebook']
+
+# colors.shuffle!
+# things.shuffle!
+
+# puts colors.length-1
+
+# puts colors
+# puts things
+
+# i = 0
+# loop do
+#   break if i > colors.length-1
+
+#   if i == 0
+#     puts 'I have a ' + colors[i] + ' ' + things[i] + '.'
+#   else
+#     puts 'And a ' + colors[i] + ' ' + things[i] + '.'
+#   end
+
+#   i += 1
+# end
+
+# I had the right idea in that I wanted to ensure that the index for the colors array aligned wiht the lenghth of the array for the break.
+# However, I failed to consider the fact that the things array was even shorter and that we ran into an issue of nil because there were no longer any values within the array.
+
+# Correct solution below:
+
+# colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 'turquoise', 'silver', 'black']
+# things = ['pen', 'mouse pad', 'coffee mug', 'sofa', 'surf board', 'training mat', 'notebook']
+
+# colors.shuffle!
+# things.shuffle!
+
+# i = 0
+# loop do
+#   break if i > things.length - 1
+
+#   if i == 0
+#     puts 'I have a ' + colors[i] + ' ' + things[i] + '.'
+#   else
+#     puts 'And a ' + colors[i] + ' ' + things[i] + '.'
+#   end
+
+#   i += 1
+# end
+
+# Exercise 9 - Given a String of digits, our digit_product method should return the product of all digits in the String argument. 
+# You've been asked to implement this method without using reduce or inject.
+# When testing the method, you are surprised by a return value of 0. What's wrong with this code and how can you fix it?
+
+# def digit_product(str_num)
+#   digits = str_num.chars.map { |n| n.to_i }
+#   product = 1
+
+#   digits.each do |digit|
+#     product *= digit
+#   end
+
+#   product
+# end
+
+
+# p digit_product('12345')
+
+# p digits = "12345".chars.map { |n| n.to_i }
+
+# expected return value: 120
+# actual return value: 0
+
+# I believe the issue was that product was originally assigned to 0 and because the multiplication was against the product the total value of the product of all digits would be 0.
+# I changed the value of product to 1 because that would enable the product of the first multiplication to be equal to the first digit.
+
+# Exercise 10 - We started writing an RPG game, but we already run into an error message. Find the problem and fix it.
+
+# Each player starts with the same basic stats.
+
+player = { strength: 10, dexterity: 10, charisma: 10, stamina: 10 }
+
+# Then the player picks a character class and gets an upgrade accordingly.
+
+character_classes = {
+  warrior: { strength:  20 },
+  thief:   { dexterity: 20 },
+  scout:   { stamina:   20 },
+  mage:    { charisma:  20 }
+}
+
+puts 'Please type your class (warrior, thief, scout, mage):'
+input = gets.chomp.downcase
+
+player.merge!(character_classes[input.to_sym])
+
+puts 'Your character stats:'
+puts player
+
+# There were a couple of issues here. The first issue is that the input was just a string and was not a symbol for the key value for the hash. I used the #to_sym method to convert
+# the string to a symbol. However, after that I noticed that it was still printing the original player stats instead of the new merged values. This would be because the merge method does not
+# mutate the caller. I then used the destructive #merge! to ensure that when we print player that we actually get the merged values.
+
+# The solution actually suggests you can change to the destructive #merge! or you can reassign player with player = player.merge!(character_classes[input.to_sym])
+
